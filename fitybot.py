@@ -1,10 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8; -*-
 
 import sys, os
 import signal
 import glob
-import irclib
+import irc
+import irc.client as irclib
 
 IGNORE = ["BotFish", "ZFish"]
 VERSION = "FityBot by Corsair"

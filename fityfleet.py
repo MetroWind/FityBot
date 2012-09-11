@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 import sys,os
 import signal
@@ -6,7 +6,8 @@ import threading
 import time
 import fitybot
 
-Channels = {"irc.oftc.net": ["#arch-cn", "#njulug"],}
+Channels = {"irc.oftc.net": ["#arch-cn", "#njulug"],
+            "irc.freenode.net": ["#ubuntu-cn",]}
 Servers = Channels.keys()
 
 Bots = []

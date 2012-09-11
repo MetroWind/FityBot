@@ -3,13 +3,13 @@
 
 import random
 
-BLAHFILE = "/home/corsair/.supybot/data/blah.txt"
+BLAHFILE = "blah.txt"
 
 def on_pubmsg(bot, event):
     if bot.getNick(event) == bot.Nick:
-        BlahFile = open(BLAHFILE, 'r')
-        Blahs = [line.strip() for line in BlahFile.readlines()]
-        BlahFile.close()
+        with open(BLAHFILE, 'r') as BlahFile:
+            Blahs = [line.strip() for line in BlahFile]
+
         if len(Blahs) == 0:
             bot.reply(event, "I don't know any blah!")
             return
@@ -23,8 +23,9 @@ def on_pubmsg(bot, event):
 
 def on_privmsg(bot, event):
     BlahFile = open(BLAHFILE, 'r')
-    Blahs = [line.strip() for line in BlahFile.readlines()]
-    BlahFile.close()
+    with open(BLAHFILE, 'r') as BlahFile:
+        Blahs = [line.strip() for line in BlahFile]
+
     if len(Blahs) == 0:
         bot.reply(event, "I don't know any blah!")
         return

@@ -3,7 +3,7 @@
 
 import urllib
 import urllib2
-import simplejson
+import json
 
 API_BASE = "http://ajax.googleapis.com/ajax/services/search/web"
 
@@ -14,7 +14,7 @@ def googleQuery(text):
     Url = queryURL({'v': "1.0", 'q': text})
     Req = urllib2.Request(Url)
     Opener = urllib2.build_opener()
-    Data = simplejson.loads(Opener.open(Req).read())
+    Data = json.loads(Opener.open(Req).read())
     return Data["responseData"]["results"]
 
 def cmdGoogle(bot, event, args):
