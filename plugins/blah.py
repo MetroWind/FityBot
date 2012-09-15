@@ -36,3 +36,13 @@ def on_privmsg(bot, event):
     else:
         bot.reply(event, random.choice(GoodBlahs))
     return
+
+def cmdAddBlah(bot, event, args):
+    """Teach Fity to say something.  Usage: addblah SOMETHING.
+    """
+    NewBlah = ' '.join(args)
+    if NewBlah:
+        with open(BLAHFILE, 'a') as BlahFile:
+            BlahFile.write(NewBlah)
+            BlahFile.write('\n')
+    return
