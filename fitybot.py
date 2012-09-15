@@ -192,12 +192,12 @@ class FityBot:
 
     def say(self, channel, text):
         """Send message to channel."""
-        self.Connection.privmsg(channel, text)
+        self.Connection.privmsg(channel, text.decode("utf-8"))
         return
 
     def msg(self, nick, text):
         """Send message to nick."""
-        self.Connection.privmsg(nick, text)
+        self.Connection.privmsg(nick, text.decode("utf-8"))
         return
 
     def replyChannel(self, event, reply):
