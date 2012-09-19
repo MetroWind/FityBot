@@ -8,8 +8,8 @@ in multiple servers and channels at startup.
 
 ## Usage
 
-Edit `IGNORE' in fitybot.py and `Channels' in fityfleet.py, then run
-fityfleet.py.
+Edit `IGNORE` in fitybot.py and `Channels` in `fityfleet.py`, then run
+`fityfleet.py`.
 
 ## Todo
 
