@@ -7,7 +7,8 @@ import time
 import fitybot
 
 Channels = {"irc.oftc.net": ["#arch-cn", "#njulug"],
-            "irc.freenode.net": ["#ubuntu-cn",]}
+            "irc.freenode.net": ["#ubuntu-cn", "#archlinux-cn"],
+            "irc.esper.net": ["#minecraft-cn",]}
 Servers = Channels.keys()
 
 Bots = []
@@ -24,9 +25,8 @@ def main():
     Threads = []
     for Server in Servers:
         Bot = fitybot.FityBot(Server)
+        Bot.Channels = Channels[Server]
         Bot.connect()
-        for Channel in Channels[Server]:
-            Bot.join(Channel)
         Thread = threading.Thread(target=Bot.start)
         Thread.start()
         Threads.append(Thread)

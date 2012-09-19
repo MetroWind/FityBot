@@ -8,7 +8,7 @@ import irc
 import irc.client as irclib
 
 IGNORE = ["BotFish", "ZFish"]
-VERSION = "FityBot by Corsair"
+VERSION = "FityBot by Darksair"
 
 def var2Str(var_name, value):
     return " = ".join([var_name, str(value)])
@@ -83,7 +83,7 @@ class FityBot:
         self.IRCName = self.Nick.lower()
         self.LocalAddress = ""
         self.LocalPort = 0
-        self.Channel = []
+        self.Channels = []
 
     def connect(self):
         self.logTerm("Connecting to %s..." %
@@ -145,6 +145,12 @@ class FityBot:
             getattr(self, m)(c, e)
         return
 
+    def _on_welcome(self, conn, event):
+        # Happens after recieving the welcome message from the server.
+        for Channel in self.Channels:
+            self.join(Channel)
+        return
+
     def _on_privmsg(self, conn, event):
         Cmd = self.getCmd(event)
         if Cmd != None:
@@ -187,7 +193,6 @@ class FityBot:
         """Join a channel."""
         self.logTerm("Joining in %s..." % channel)
         self.Connection.join(channel)
-        self.Channel.append(channel)
         return
 
     def say(self, channel, text):
@@ -244,10 +249,9 @@ def main():
         Bot.exit()
 
     Bot = FityBot(Options.Server, Options.Port)
+    Bot.Channels = Options.Channels
     signal.signal(signal.SIGINT, botExit)
     Bot.connect()
-    for Cha in Options.Channels:
-        Bot.join(Cha)
     Bot.start()
     return 0
 
